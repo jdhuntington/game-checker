@@ -1,14 +1,33 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>GameChecker</title>
-  <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title><%= yield :header %> - GameChecker</title>
+    <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div id="account">
+          <% if current_user %>
+          Signed in as <%= current_user.username %>
+          <%= link_to 'Sign Out', session_path, :method => 'destroy' %>
+          <% else %>
+          <%= link_to 'Sign In', new_session_path %>
+          <%= link_to 'Sign Up', new_user_path %>
+          <% end %>
+        </div>
+        <h1><%= yield :header %></h1>
+        <% flash.each do |k,v| %>
+          <div class="alert-message block-message <%= k %>"><%= v %></div>
+        <% end %>
+      </header>
+      <article>
+        <%= yield %>
+      </article>
 
-<%= yield %>
-
-</body>
+    </div>
+  </body>
 </html>

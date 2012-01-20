@@ -3,6 +3,8 @@ require 'digest/md5'
 class User < ActiveRecord::Base
   validates_presence_of :username, :password
 
+  has_many :games
+
   before_create :encrypt_password
 
   def encrypt_password

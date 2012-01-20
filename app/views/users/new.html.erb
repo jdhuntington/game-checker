@@ -1,2 +1,15 @@
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+<h1>Create User</h1>
+
+<%= form_for @user do |f| %>
+  <label>
+    Username
+    <%= f.text_field :username %>
+  </label>
+
+  <label>
+    Password
+    <%= f.password_field :password %>
+  </label>
+
+  <%= f.submit 'Create' %>
+<% end %>
