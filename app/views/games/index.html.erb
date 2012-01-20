@@ -1,8 +1,7 @@
-<h1>Listing games</h1>
+<% content_for :header, 'Listing games' %>
 
 <table>
   <tr>
-    <th>User</th>
     <th>Url</th>
     <th>My turn</th>
     <th>Ended at</th>
@@ -13,11 +12,10 @@
 
 <% @games.each do |game| %>
   <tr>
-    <td><%= game.user_id %></td>
     <td><%= game.url %></td>
     <td><%= game.my_turn %></td>
     <td><%= game.ended_at %></td>
-    <td><%= link_to 'Show', game %></td>
+    <td><%= link_to 'Check status', check_game_path(game), :method => 'post' %></td>
     <td><%= link_to 'Edit', edit_game_path(game) %></td>
     <td><%= link_to 'Destroy', game, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
@@ -26,4 +24,5 @@
 
 <br />
 
-<%= link_to 'New Game', new_game_path %>
+<h2>Add Game</h2>
+<%= render 'form' %>

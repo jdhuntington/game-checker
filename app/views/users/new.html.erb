@@ -1,15 +1,21 @@
-<h1>Create User</h1>
+<% content_for :header, 'Create User' %>
 
-<%= form_for @user do |f| %>
-  <label>
-    Username
+<%= form_for @user, :html => { :class => 'form-stacked' } do |f| %>
+<div class="clearfix">
+  <%= f.label :username %>
+  <div class="input">
     <%= f.text_field :username %>
-  </label>
+  </div>
+</div>
 
-  <label>
-    Password
+<div class="clearfix">
+  <%= f.label :password %>
+  <div class="input">
     <%= f.password_field :password %>
-  </label>
+  </div>
+</div>
 
-  <%= f.submit 'Create' %>
+<div class="actions">
+  <%= f.submit 'Create', :class => 'btn primary' %>
+</div>
 <% end %>
