@@ -1,4 +1,14 @@
 GameChecker::Application.routes.draw do
+  get "session/new"
+
+  get "session/create"
+
+  get "session/destroy"
+
+  get "users/new"
+
+  get "users/update"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
