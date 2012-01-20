@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe SessionController do
+describe SessionsController do
 
   describe "GET 'new'" do
     it "returns http success" do
@@ -9,16 +9,16 @@ describe SessionController do
     end
   end
 
-  describe "GET 'create'" do
+  describe "POST 'create'" do
     it "returns http success" do
-      get 'create'
+      post 'create'
       response.should be_success
     end
   end
 
-  describe "GET 'destroy'" do
+  describe "DELETE 'destroy'" do
     it "returns http success" do
-      get 'destroy'
+      delete 'destroy'
       response.should be_success
     end
   end
