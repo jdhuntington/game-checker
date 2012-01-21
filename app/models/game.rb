@@ -4,6 +4,8 @@ require 'open-uri'
 class Game < ActiveRecord::Base
   belongs_to :user
 
+  scope :unfinished, where(:ended_at => nil)
+
   def refresh_status
     Resque.enqueue(UpdateGame, self.id)
   end
