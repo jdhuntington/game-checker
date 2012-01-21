@@ -38,7 +38,8 @@ class GamesController < ApplicationController
   end
 
   def check
-    Resque.enqueue(UpdateGame, params[:id])
+    game = current_user.games.find(params[:id])
+    game.refresh_status
     redirect_to games_path
   end
 

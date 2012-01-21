@@ -5,6 +5,10 @@ class Game < ActiveRecord::Base
   belongs_to :user
 
   def refresh_status
+    Resque.enqueue(UpdateGame, self.id)
+  end
+
+  def refresh_status!
     doc = Nokogiri::HTML(open(url))
     msg = doc.css('#turn_message')[0].content
     my_turn! unless msg =~ /waiting/

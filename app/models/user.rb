@@ -16,6 +16,6 @@ class User < ActiveRecord::Base
   end
 
   def self.lookup(username, password)
-    find_by_username_and_password(username, encrypt(password))
+    find_by_username_and_password(username.to_s, encrypt(password.to_s))
   end
 end

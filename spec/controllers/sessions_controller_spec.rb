@@ -19,7 +19,7 @@ describe SessionsController do
   describe "DELETE 'destroy'" do
     it "returns http success" do
       delete 'destroy'
-      response.should be_success
+      response.should be_redirect
     end
   end
 
