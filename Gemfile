@@ -24,8 +24,5 @@ group :test do
 end
 
 gem 'resque'
-gem 'resque-status'
-gem 'resque-retry'
 gem 'resque-timeout'
 gem 'nokogiri'
-gem 'curb'
