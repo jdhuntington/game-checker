@@ -6,6 +6,7 @@ class GamesController < ApplicationController
   # GET /games.json
   def index
     @games = current_user.games
+    @my_turn = current_user.games.my_turn
 
     respond_to do |format|
       format.html do
@@ -41,6 +42,12 @@ class GamesController < ApplicationController
     game = current_user.games.find(params[:id])
     game.refresh_status
     redirect_to games_path
+  end
+
+  def play
+    game = current_user.games.find(params[:id])
+    game.played!
+    redirect_to game.url
   end
 
   # PUT /games/1

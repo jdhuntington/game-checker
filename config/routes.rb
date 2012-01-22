@@ -4,6 +4,7 @@ GameChecker::Application.routes.draw do
   resources :games do
     member do
       post 'check'
+      post 'play'
     end
   end
 

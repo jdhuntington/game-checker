@@ -6,6 +6,7 @@ class Game < ActiveRecord::Base
 
   scope :unfinished, where(:ended_at => nil)
   scope :others_turn, where(:my_turn => false)
+  scope :my_turn, where(:my_turn => true)
 
   def refresh_status
     Resque.enqueue(UpdateGame, self.id)
@@ -32,6 +33,11 @@ class Game < ActiveRecord::Base
   def bgg_tigris_my_turn?(doc)
     current = doc.css('img[alt="Current Player"]').first.parent.css('.t_medtitle').first.content
     user.username == current
+  end
+
+  def played!
+    self.my_turn = false
+    save!
   end
 
   private
