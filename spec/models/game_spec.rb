@@ -25,4 +25,14 @@ describe Game do
       @u.games.others_turn.length.should == 2
     end
   end
+
+  describe '#game_module' do
+    it 'should recognize BGGTigris' do
+      Game.new(:url => 'http://www.boardgamegeek.com/tigris/view/game/000').game_module.should == BGGTigris
+    end
+
+    it 'should recognize DavePeckGo' do
+      Game.new(:url => 'http://go.davepeck.org/play/ABCDEF/').game_module.should == DavePeckGo
+    end
+  end
 end

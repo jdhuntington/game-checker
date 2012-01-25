@@ -1,9 +1,9 @@
 <% content_for :header, 'Listing games' %>
 
 <h2>My Turn</h2>
-<ul>
+<ul id="my-turns">
   <% @my_turn.each do |game| %>
-    <li><%= link_to game.url, play_game_path(game), :method => 'post' %></li>
+    <li class="<%= game.nickname %>"><%= link_to game.url, play_game_path(game), :method => 'post' %></li>
   <% end %>
 </ul>
 

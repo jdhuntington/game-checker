@@ -1,6 +1,10 @@
 require 'nokogiri'
 require 'open-uri'
 
+Dir[File.join(Rails.root, 'lib', 'game_modules', '*.rb')].each do |f|
+  require File.expand_path(f)
+end
+
 class Game < ActiveRecord::Base
   belongs_to :user
 
@@ -14,25 +18,22 @@ class Game < ActiveRecord::Base
 
   def refresh_status!
     doc = Nokogiri::HTML(open(url))
-    my_turn = case url
+    my_turn! if game_module.my_turn?(doc, username)
+  end
+
+  def nickname
+    game_module.nickname
+  end
+
+  def game_module
+    case url
     when /boardgamegeek.com\/tigris/
-                bgg_tigris_my_turn?(doc)
-              when /go.davepeck.org\/play/
-                davepeck_go_my_turn?(doc)
-              else
-                false
-              end
-    my_turn! if my_turn
-  end
-
-  def davepeck_go_my_turn?(doc)
-    msg = doc.css('#turn_message')[0].content
-    !(msg =~ /waiting/)
-  end
-
-  def bgg_tigris_my_turn?(doc)
-    current = doc.css('img[alt="Current Player"]').first.parent.css('.t_medtitle').first.content
-    user.username == current
+      BGGTigris
+    when /go.davepeck.org\/play/
+      DavePeckGo
+    else
+      nil
+    end
   end
 
   def played!

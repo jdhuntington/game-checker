@@ -1,3 +1,23 @@
-// Place all the styles related to the games controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+#my-turns {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+        list-style: none;
+        margin: 0 0 10px;
+        padding: 0;
+    }
+    li a {
+        display: block;
+        height: 75px;
+        padding-left: 82px;
+    }
+    li.go a {
+        background: no-repeat 0 0 url(http://farm2.staticflickr.com/1140/547944930_8d911f4027_s.jpg);
+    }
+
+    li.tigris a {
+        background: no-repeat 0 0 url(http://farm1.staticflickr.com/129/344808931_e82e768a14_s.jpg);
+    }
+}
