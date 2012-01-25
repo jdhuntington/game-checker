@@ -6,7 +6,7 @@ class GamesController < ApplicationController
   # GET /games.json
   def index
     @games = current_user.games
-    @my_turn = current_user.games.my_turn
+    @my_turns = current_user.games.my_turn
 
     respond_to do |format|
       format.html do

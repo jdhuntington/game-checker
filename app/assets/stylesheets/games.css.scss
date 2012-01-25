@@ -11,7 +11,11 @@
     li a {
         display: block;
         height: 75px;
-        padding-left: 82px;
+        padding-left: 92px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        line-height: 64px;
+        font-size: 25px;
     }
     li.go a {
         background: no-repeat 0 0 url(http://farm2.staticflickr.com/1140/547944930_8d911f4027_s.jpg);

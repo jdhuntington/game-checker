@@ -7,3 +7,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+$(function() {
+  $('.extra a.show-extra').click(function(e){
+    e.preventDefault();
+    $(this).hide();
+    $(this).parents('.extra').find('.more').show();
+  })
+})

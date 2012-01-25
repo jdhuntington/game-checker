@@ -9,3 +9,7 @@
 #account {
     float: right;
 }
+
+.extra .more {
+    display: none;
+}

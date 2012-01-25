@@ -1,36 +1,39 @@
-<% content_for :header, 'Listing games' %>
+<% content_for :header, site_title(@my_turns) %>
 
-<h2>My Turn</h2>
 <ul id="my-turns">
-  <% @my_turn.each do |game| %>
+  <% @my_turns.each do |game| %>
     <li class="<%= game.nickname %>"><%= link_to game.url, play_game_path(game), :method => 'post' %></li>
   <% end %>
 </ul>
 
-<h2>All Games</h2>
-<table>
-  <tr>
-    <th>Url</th>
-    <th>My turn</th>
-    <th>Ended at</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
 
-<% @games.each do |game| %>
-  <tr>
-    <td><%= game.url %></td>
-    <td><%= game.my_turn %></td>
-    <td><%= game.ended_at %></td>
-    <td><%= link_to 'Check status', check_game_path(game), :method => 'post' %></td>
-    <td><%= link_to 'Edit', edit_game_path(game) %></td>
-    <td><%= link_to 'Destroy', game, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
-</table>
+<div class="extra">
+  <a href="#" class="show-extra">Show more</a>
+  <div class="more">
+  <h2>Add Game</h2>
+  <%= render 'form' %>
 
-<br />
+  <h2>All Games</h2>
+  <table>
+    <tr>
+      <th>Url</th>
+      <th>My turn</th>
+      <th>Ended at</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
 
-<h2>Add Game</h2>
-<%= render 'form' %>
+    <% @games.each do |game| %>
+      <tr>
+        <td><%= game.url %></td>
+        <td><%= game.my_turn %></td>
+        <td><%= game.ended_at %></td>
+        <td><%= link_to 'Check status', check_game_path(game), :method => 'post' %></td>
+        <td><%= link_to 'Edit', edit_game_path(game) %></td>
+        <td><%= link_to 'Destroy', game, confirm: 'Are you sure?', method: :delete %></td>
+      </tr>
+    <% end %>
+  </table>
+  </div>
+</div>
