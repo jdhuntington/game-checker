@@ -21,6 +21,10 @@ class Game < ActiveRecord::Base
     my_turn! if game_module.my_turn?(doc, username)
   end
 
+  def username
+    user.username
+  end
+
   def nickname
     game_module.nickname
   end
