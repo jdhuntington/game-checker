@@ -5,7 +5,7 @@ module BGGTigris
 
   def self.my_turn?(doc, username)
     current = doc.css('img[alt="Current Player"]').first.parent.css('.t_medtitle').first.content
-    user.username == current
+    username == current
   end
 
   def self.icon
