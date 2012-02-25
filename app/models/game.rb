@@ -17,8 +17,11 @@ class Game < ActiveRecord::Base
   end
 
   def refresh_status!
-    doc = Nokogiri::HTML(open(url))
     my_turn! if game_module.my_turn?(doc, username)
+  end
+
+  def doc
+    Nokogiri::HTML(open(url))
   end
 
   def username
@@ -35,6 +38,8 @@ class Game < ActiveRecord::Base
       BGGTigris
     when /go.davepeck.org\/play/
       DavePeckGo
+    when /brass.orderofthehammer.com/
+      HammerBrass
     else
       nil
     end
