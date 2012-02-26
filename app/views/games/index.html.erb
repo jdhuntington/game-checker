@@ -1,4 +1,4 @@
-<% content_for :header, site_title(@my_turns) %>
+<% content_for :header, "My Turns" %>
 
 <ul id="my-turns">
   <% @my_turns.each do |game| %>
@@ -37,3 +37,10 @@
   </table>
   </div>
 </div>
+
+<script type="text/javascript">
+var setBubble = function(){
+  Tinycon.setBubble(<%= @my_turns.length %>);
+};
+$(setBubble);
+</script>
