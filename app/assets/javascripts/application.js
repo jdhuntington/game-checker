@@ -17,6 +17,7 @@ $(function() {
 
   var updateList = function() {
     $.getJSON(GameChecker.gamesPath, function(data) {
+      Tinycon.setBubble(data.length);
       var ul = $('ul#my-turns').html('');
       $.each(data, function() {
         var li = '<li class="' + this.nickname + '"><a href="/games/' + this.id + '/play" data-method="post" rel="nofollow">' + this.url + '</a></li>';
