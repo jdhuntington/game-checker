@@ -13,5 +13,17 @@ $(function() {
     e.preventDefault();
     $(this).hide();
     $(this).parents('.extra').find('.more').show();
-  })
+  });
+
+  var updateList = function() {
+    $.getJSON(GameChecker.gamesPath, function(data) {
+      var ul = $('ul#my-turns').html('');
+      $.each(data, function() {
+        var li = '<li class="' + this.nickname + '"><a href="/games/' + this.id + '/play" data-method="post" rel="nofollow">' + this.url + '</a></li>';
+        ul.append(li);
+      });
+    });
+  };
+
+  setInterval(updateList, 1000 * 60 * 5); // 5 minutes
 })

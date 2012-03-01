@@ -13,7 +13,9 @@ class GamesController < ApplicationController
         @game = Game.new        # for the form
         render :action => 'index'
       end
-      format.json { render json: @games }
+      format.json do
+        render json: (params[:my_turn] ? @my_turns : @games)
+      end
     end
   end
 

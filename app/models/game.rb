@@ -50,6 +50,10 @@ class Game < ActiveRecord::Base
     save!
   end
 
+  def as_json(options={})
+    super(:methods => [ :nickname ])
+  end
+
   private
   def my_turn!
     self.my_turn = true
